@@ -5,7 +5,7 @@ module ActiveRecord
         #
         # Adds a product to the cart
         #
-        def add(object, price, quantity = 1, cumulative = true)
+        def add(object, price, quantity = 1, share_qty = 0,share_price = 0,cumulative = true)
           cart_item = item_for(object)
 
           if cart_item
@@ -14,7 +14,7 @@ module ActiveRecord
             cart_item.save
             cart_item
           else
-            shopping_cart_items.create(item: object, price: price, quantity: quantity)
+            shopping_cart_items.create(item: object, price: price, quantity: quantity,share_qty:share_qty,share_price:share_price)
           end
         end
 
