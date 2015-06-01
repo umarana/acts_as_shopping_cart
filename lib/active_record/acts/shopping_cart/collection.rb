@@ -54,12 +54,16 @@ module ActiveRecord
           shopping_cart_items.inject(Money.new(0)) { |sum, item| sum += (item.price * item.quantity) }
         end
 
+        def share_total
+          shopping_cart_items.inject(Money.new(0)) { |sum, item| sum += (item.share_price * item.share_qty) }
+        end
+
         def shipping_cost
           Money.new(0)
         end
 
         def taxes
-          subtotal * self.tax_pct * 0.01
+          subtotal
         end
 
         def tax_pct
