@@ -9,6 +9,10 @@ module ActiveRecord
           ("%.2f" % (self.quantity * self.price)).to_f
         end
 
+        def share_total
+          ("%.2f" % (self.share_qty * self.share_price)).to_f
+        end
+
         #
         # Updates the quantity of the item
         #

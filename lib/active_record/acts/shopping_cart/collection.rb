@@ -55,7 +55,13 @@ module ActiveRecord
         end
 
         def share_total
-          shopping_cart_items.inject(Money.new(0)) { |sum, item| sum += (item.share_price * item.share_qty) }
+          sum = 0
+           shopping_cart_items.each do |item| 
+              sum+= (item.share_price * item.share_qty)
+           end
+           sum
+            # .inject(Money.new(0)) { |sum, item| sum += (item.share_price * item.share_qty) }
+
         end
 
         def shipping_cost
