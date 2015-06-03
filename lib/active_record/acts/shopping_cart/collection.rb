@@ -51,7 +51,12 @@ module ActiveRecord
         # items in the cart
         #
         def subtotal
-          shopping_cart_items.inject(Money.new(0)) { |sum, item| sum += (item.price * item.quantity) }
+          sum = 0
+           shopping_cart_items.each do |item| 
+              sum+= (item.price * item.quantity)
+           end
+           sum
+          #shopping_cart_items.inject(Money.new(0)) { |sum, item| sum += (item.price * item.quantity) }
         end
 
         def share_total
@@ -80,7 +85,8 @@ module ActiveRecord
         # Returns the total by summing the subtotal, taxes and shipping_cost
         #
         def total
-          self.subtotal + self.taxes + self.shipping_cost
+          #self.subtotal + self.taxes + self.shipping_cost
+          self.subtotal 
         end
 
         #
